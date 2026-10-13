@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Room Status Enumeration */
+/* I defined the three possible room statuses */
 typedef enum {
     STATUS_OPEN = 0,
     STATUS_OCCUPIED,
     STATUS_INVALID
 } RoomStatus;
 
-/* Global 2D array: 5 floors, 8 rooms per floor */
+/* I created an array to store the status of all 40 rooms */
 RoomStatus hotel[5][8];
 
-/* Initialize all rooms to OPEN */
+/* I made every room open when the program starts */
 void initHotel(void) {
     for (int f = 0; f < 5; f++) {
         for (int r = 0; r < 8; r++) {
@@ -20,11 +20,10 @@ void initHotel(void) {
     }
 }
 
-/* 
- * Helper function to map room number (e.g., 304) to array indices.
- * Floor 1: 101-108 -> hotel[0][0..7]
- * Floor 5: 501-508 -> hotel[4][0..7]
- * Returns 1 if valid, 0 otherwise.
+/*
+ * I converted room numbers into array positions.
+ * I checked that the floor and room number are valid.
+ * I returned 1 for valid rooms and 0 for invalid rooms.
  */
 int parseRoomNumber(int roomNum, int *floorIdx, int *roomIdx) {
     int floor = roomNum / 100;
@@ -39,6 +38,7 @@ int parseRoomNumber(int roomNum, int *floorIdx, int *roomIdx) {
     return 1;
 }
 
+/* I converted room statuses into readable text */
 const char* statusToString(RoomStatus status) {
     switch (status) {
         case STATUS_OPEN:     return "OPEN";
@@ -48,7 +48,7 @@ const char* statusToString(RoomStatus status) {
     }
 }
 
-/* Display grid of all rooms and their statuses */
+/* I displayed all rooms and their current statuses */
 void displayAllRooms(void) {
     printf("\n================ HOTEL ROOM OVERVIEW ================\n");
     printf("Status Codes: [O] Open  |  [X] Occupied  |  [-] Invalid\n");
@@ -71,7 +71,7 @@ void displayAllRooms(void) {
     printf("====================================================\n");
 }
 
-/* Check individual room status */
+/* I let the user check the status of a specific room */
 void checkRoom(void) {
     int roomNum, f, r;
     printf("\nEnter room number to check (101-508): ");
@@ -89,7 +89,7 @@ void checkRoom(void) {
     printf("Room %d status: %s\n", roomNum, statusToString(hotel[f][r]));
 }
 
-/* Reserve an open room */
+/* I let the user reserve a room if it is available */
 void reserveRoom(void) {
     int roomNum, f, r;
     printf("\nEnter room number to reserve: ");
@@ -114,7 +114,7 @@ void reserveRoom(void) {
     }
 }
 
-/* Cancel reservation / check out */
+/* I let the user cancel a reservation and reopen the room */
 void cancelRoom(void) {
     int roomNum, f, r;
     printf("\nEnter room number to cancel reservation: ");
@@ -139,7 +139,7 @@ void cancelRoom(void) {
     }
 }
 
-/* Mark a room as invalid (maintenance/out of service) or restore it */
+/* I let the user mark a room out of service or restore it */
 void toggleInvalidRoom(void) {
     int roomNum, f, r;
     printf("\nEnter room number to modify service validity: ");

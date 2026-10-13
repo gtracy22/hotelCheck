@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* I defined the three possible room statuses */
+/* I defined all three possible room statuses */
 typedef enum {
     STATUS_OPEN = 0,
     STATUS_OCCUPIED,
